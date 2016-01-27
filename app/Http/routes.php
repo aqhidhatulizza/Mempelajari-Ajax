@@ -1,34 +1,16 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::get('/', function () {
     return view('partials.home');
-});
 
-Route::get('/flot', function () {
-    return view('partials.float');
 });
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
+Route::get('create-identitas', function () {
+    return view('partials.identitas.create');
+});
+Route::get('identitas', 'IdentitasController@index');
+Route::get('identitas/{id}', 'IdentitasController@show');
+Route::post('identitas', 'IdentitasController@store');
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+Route::put('edit-identitas/{id}', 'IdentitasController@update');
+Route::get('delete-identitas/{id}', 'IdentitasController@destroy');
+Route::get('edit-identitas/{id}', 'IdentitasController@edit');
