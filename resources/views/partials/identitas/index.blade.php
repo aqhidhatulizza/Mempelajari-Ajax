@@ -6,13 +6,15 @@
             <h1 class="page-header">identitas</h1>
         </div>
     </div>
-
     <div class="row">
         <div clas="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Data identitas
                 </div>
+                <button type="button" class="btn btn-outline btn-primary"
+                        onclick="location.href='/create-identitas';">Add
+                </button>
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
                         @if(count($identitas)>0)
@@ -45,9 +47,7 @@
                                                     onclick="location.href='/delete-identitas/{{$data->id}}';">
                                                 Delete
                                             </button>
-                                            <button type="button" class="btn btn-outline btn-primary"
-                                                    onclick="location.href='/create-identitas';">Add
-                                            </button>
+
                                         </td>
                                     </tr>
                                 @endforeach
