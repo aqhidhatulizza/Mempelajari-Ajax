@@ -44,6 +44,7 @@
                                 <button type="button" class="btn btn-outline btn-primary"
                                         onclick=""location.href="/buku';">Kembali
                                 </button>
+
                             </td>
                         </tr>
                     </table>

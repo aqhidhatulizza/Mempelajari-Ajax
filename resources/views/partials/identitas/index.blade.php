@@ -15,6 +15,25 @@
                 <button type="button" class="btn btn-outline btn-primary"
                         onclick="location.href='/create-identitas';">Add
                 </button>
+                <button type="button" class="btn btn-defaultbtn-lg">
+                    <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-defaultbtn-lg">
+                    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-defaultbtn-lg">
+                    <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-defaultbtn-lg">
+                    <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-defaultbtn-lg">
+                    <span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-defaultbtn-lg">
+                    <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                </button>
+
                 <div class="panel-body">
                     <div class="dataTable_wrapper">
                         @if(count($identitas)>0)
@@ -47,8 +66,9 @@
                                                     onclick="location.href='/delete-identitas/{{$data->id}}';">
                                                 Delete
                                             </button>
-
                                         </td>
+
+
                                     </tr>
                                 @endforeach
                                 </tbody>
