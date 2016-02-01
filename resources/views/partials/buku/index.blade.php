@@ -1,68 +1,68 @@
 @extends('layouts.master')
 @section('title', 'Page Title')
 @section('content')
-   <body onload="Index()"><div id="Index">
-    <div class="row">
-        <div class="" col=-lg-12">
-            <h1 class="page-header">buku</h1>
+    <body onload="Index()"><div id="Index">
+        <div class="row">
+            <div class="" col=-lg-12">
+                <h1 class="page-header">buku</h1>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div clas="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Data buku
-                </div>
-                <button type="button" class="btn btn-outline btn-primary"
-                        onclick="Create();">Add
-                </button>
+        <div class="row">
+            <div clas="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Data buku
+                    </div>
+                    <button type="button" class="btn btn-outline btn-primary"
+                            onclick="Create();">Add
+                    </button>
 
-                <button type="button" class="btn btn-default btn-lg">
-                    <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-                </button>
-                <div class="panel-body">
-                    <div class="dataTable_wrapper">
-                        @if(count($buku)>0)
-                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>nama_buku</th>
-                                    <th>jenis_buku</th>
-                                    <th>harga_buku</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($buku as $data)
-                                    <tr class="">
-
-                                        <td>{{ $data->id }}</td>
-                                        <td>{{ $data->nama_buku}}</td>
-                                        <td>{{ $data->jenis_buku }}</td>
-                                        <td>{{ $data->harga_buku }}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-outline btn-primary"
-                                                    onclick="location.href='/detail-buku/{{$data->id}}';">Detail
-                                            </button>
-                                            <button type="button" class="btn btn-outline btn-primary"
-                                                    onclick="location.href='/edit-buku/{{$data->id}}';">Edit
-                                            </button>
-                                            <button type="button" class="btn btn-outline btn-primary"
-                                                    onclick="location.href='/delete-buku/{{$data->id}}';">Delete
-                                            </button>
-
-                                        </td>
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                    </button>
+                    <div class="panel-body">
+                        <div class="dataTable_wrapper">
+                            @if(count($buku)>0)
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>nama_buku</th>
+                                        <th>jenis_buku</th>
+                                        <th>harga_buku</th>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        @endif
+                                    </thead>
+                                    <tbody id="tampildata">
+                                    {{--@foreach($buku as $data)--}}
+                                        {{--<tr class="">--}}
+
+                                            {{--<td>{{ $data->id }}</td>--}}
+                                            {{--<td>{{ $data->nama_buku}}</td>--}}
+                                            {{--<td>{{ $data->jenis_buku }}</td>--}}
+                                            {{--<td>{{ $data->harga_buku }}</td>--}}
+                                            {{--<td>--}}
+                                                {{--<button type="button" class="btn btn-outline btn-primary"--}}
+                                                        {{--onclick="location.href='/detail-buku/{{$data->id}}';">Detail--}}
+                                                {{--</button>--}}
+                                                {{--<button type="button" class="btn btn-outline btn-primary"--}}
+                                                        {{--onclick="location.href='/edit-buku/{{$data->id}}';">Edit--}}
+                                                {{--</button>--}}
+                                                {{--<button type="button" class="btn btn-outline btn-primary"--}}
+                                                        {{--onclick="location.href='/delete-buku/{{$data->id}}';">Delete--}}
+                                                {{--</button>--}}
+
+                                            {{--</td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endforeach--}}
+                                    {{--</tbody>--}}
+                                </table>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <div id="Create">
         <div class="row">
@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <form id="Form-Create">
-                           <div class="form-group">
+                                <div class="form-group">
                                     <label>kode</label>
                                     <label>:</label>
                                     <input type="text" class="form-control" name="kode">
@@ -129,7 +129,7 @@
                     <div class="panel-body">
                         <form role="form">
 
-                           <div class="row">
+                            <div class="row">
                                 <div class="col-lg-6">
                                     <form id="Form">
                                         <div class="form-group">
@@ -164,85 +164,135 @@
 
                                             <button type="submit" class="btn btn-outline btn-info" type="submit"value="Simpan">
                                                 onclick="location.href='/buku/';'>Simpan
-                                            <button type="button" class="btn btn-outline btn-primary"
-                                            onclick="location.href='/buku';">Kembali
-                                            </button>
-                            </div>
+                                                <button type="button" class="btn btn-outline btn-primary"
+                                                        onclick="location.href='/buku';">Kembali
+                                                </button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
-                            </form>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-   <script src="{!! asset('bower_components/jquery/dist/jquery.min.js') !!}"></script>
-   <script>
+    <script src="{!! asset('bower_components/jquery/dist/jquery.min.js') !!}"></script>
+    <script>
         $(document).ready(function () {
+            $('#Create').hide();
+            $('#Edit').hide();
+            getAjax();
             $("#Form-Create").submit(function (event) {
 
-event.preventDefault();
-                var$form = $(this),
-                            id = $form.find("input[input='id']").val(),
-                            nama_buku = $form.find("input[name='nama_buku']").val(),
-                           jenis_buku= $form.find("input[name='jenis_buku']").val(),
-                            harga_buku = $form.find("input[name='harga_buku']").val();
+                event.preventDefault();
+                var $form = $(this),
+                        id = $form.find("input[input='id']").val(),
+                        nama_buku = $form.find("input[name='nama_buku']").val(),
+                        jenis_buku = $form.find("input[name='jenis_buku']").val(),
+                        harga_buku = $form.find("input[name='harga_buku']").val();
                 $("$Form-Create").reset();
                 var posting = $.post('/buku', {
-                id:id,
-                nama_buku:nama_buku,
-                jenis_buku:jenis_buku,
-                harga_buku:harga_buku,
+                    id: id,
+                    nama_buku: nama_buku,
+                    jenis_buku: jenis_buku,
+                    harga_buku: harga_buku,
                 });
                 //Put the result in a div
                 posting.dne(function (data) {
 
-                console.log(data);
-                window.alert(data.result.message);
-                document.getElementById("form-Create").reset();
-                location.reload();
-                $('#Create').hide();
-                $('#Edit').hide();
-                $('#Index').show();
-               });
-             });
-           });
-           function Index(){
-               $('#Create').hide();
-                $('#Edit').hide();
-                $('#Index').show();
+                    console.log(data);
+                    window.alert(data.result.message);
+                    document.getElementById("form-Create").reset();
+                    location.reload();
+                    $('#Create').hide();
+                    $('#Edit').hide();
+                    $('#Index').show();
+                });
+            });
+        });
+        function Index() {
+            $('#Create').hide();
+            $('#Edit').hide();
+            $('#Index').show();
 
+        }
+        function Create() {
+            $('#Create').show();
+            $('#Edit').hide();
+            $('#Index').hide();
+        }
+        function getAjax() {
+            $("#tampildata").children().remove();
+            $.getJSON("/data", function(data) {
+                $.each(data.slice(0,9),function(i,data) {
+                    $("tampildata").append("<tr><td>"+ data.id + "</td><td>" + data.nama_buku + data.jenis_buku +"</td><td>" + data.harga_buku + "</td><td><button type='button' class='btn btn-outline btn-info' onclick='Edit("+ data.id +")'>Edit</button><button type='button' class='btn btn-outline btn-danger onclick='Hapus("+ data.id+")'>Delete</button></td></tr>");
+                }):
+            });
+
+        }
+        function Edit(id) {
+            $('#Create').hide();
+            $('#Edit').show();
+            $('#Index').hide();
+            $.ajax({
+                        method: "Get",
+                        url: '/buku/' + id,
+                        data: {}
+                    })
+                    .done(function (data) {
+                        console.log(data.id);
+                        //         var $form = $(this),
+                        id = $("input[name='id']").val(data.id);
+                        nama_buku = $("input[name='nama_buku']").val(data.nama_buku);
+                        jenis_buku = $("input[name='jenis_buku']").val(data.jenis_buku);
+                        harga_buku = $("input[name='haga_buku']").val(data.harga_buku);
+
+                        $('#Edit').show();
+                    });
+            $("Form-Edit").submit(function (event) {
+                event.preventDefault();
+                var $form = $(this),
+                        id = $form.find("input[name='id']").val(),
+                        nama_buku = $form.find("input[name='nama_buku']").val(),
+                        jenis_buku = $form.find("input[name='jenis_buku']").val(),
+                        harga_buku = $form.find("input[name='harga_buku']").val();
+                $.ajax({
+                            method: "PUT",
+                            url: '/buku/' + id,
+                            data: {
+                                id: id,
+                                nama_buku: nama_buku,
+                                jenis_buku: jenis_buku,
+                                harga_buku: harga_buku
+                            }
+                        })
+                        .done(function (data) {
+                            window.alert(data.result.message);
+                            getAjax();
+                            Index();
+                        });
+            });
+        }
+        function Hapus(id) {
+            var result = confirm("Apakah Anda Yakin ingin Menghapus?");
+            if (result) {
+
+                $.ajax({
+                            method: "DELETE",
+                            url: '/buku/' + id,
+                            data: {}
+                        })
+                        .done(function (data) {
+                            window.alert(data.result.message);
+                            location.reload();
+                        });
             }
-            function Create(){
-               $('#Create').show();
-                $('#Edit').hide();
-                $('#Index').hide();
-            }
-            function Edit(){
-               $('#Create').hide();
-                $('#Edit').show();
-                $('#Index').hide();
-             }
-         function Hapus(id) {
-             var result = confirm("Apakah Anda Yakin ingin Menghapus?");
-             if (result) {
+        }
 
-                 $.ajax({
-                             method: "DELETE",
-                             url: '/buku/' + id,
-                             data: {}
-                         })
-                         .done(function (data) {
-                             window.alert(data.result.message);
-                             location.reload();
-                         });
-             }
-         }
-
-       </script>
-</body>
+    </script>
+    </body>
 
 @endsection
 
