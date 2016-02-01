@@ -31,7 +31,10 @@ class IdentitasController extends Controller
     {
         return $this->identitas->create($request->all());
     }
-
+    public function getData($limit = 10)
+    {
+        return $this->identitas->getData();
+    }
     public function show($id)
     {
         return view('partials.identitas.detail', [

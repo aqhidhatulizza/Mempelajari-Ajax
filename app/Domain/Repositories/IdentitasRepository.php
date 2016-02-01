@@ -70,4 +70,10 @@ class IdentitasRepository extends AbstractRepository implements Paginable, Cruda
     {
         return parent::getByPage($limit, $columns);
     }
+
+public function getData()
+{
+    $data = $this->model->get();
+    return $data;
+}
 }
