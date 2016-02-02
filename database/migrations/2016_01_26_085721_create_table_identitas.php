@@ -12,7 +12,7 @@ class CreateTableIdentitas extends Migration
      */
     public function up()
     {
-        schema::create('identitas',function(Bluprint $table) {
+        schema::create('identitas',function(Blueprint $table) {
             $table->increments('nama');
             $table->string('alamat');
             $table->string('jenis_kelamin');
@@ -28,6 +28,6 @@ class CreateTableIdentitas extends Migration
      */
     public function down()
     {
-        Shcema::drop('identitas');
+        Schema::drop('identitas');
     }
 }

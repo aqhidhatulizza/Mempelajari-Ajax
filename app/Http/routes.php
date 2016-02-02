@@ -10,8 +10,10 @@ Route::get('create-identitas', function () {
 Route::get('identitas', 'IdentitasController@index');
 Route::get('identitas/{id}', 'IdentitasController@show');
 Route::post('identitas', 'IdentitasController@store');
+Route::delete('identitas/{id}', 'IdentitasController@destroy');
+Route::post('identitas', 'IdentitasController@store');
 
-Route::put('edit-identitas/{id}', 'IdentitasController@update');
+Route::put('identitas/{id}', 'IdentitasController@update');
 Route::get('delete-identitas/{id}', 'IdentitasController@destroy');
 Route::get('edit-identitas/{id}', 'IdentitasController@edit');
 Route::get('data-identitas', 'IdentitasController@getData');
@@ -24,11 +26,13 @@ Route::get('/', function () {
 Route::get('create-buku', function () {
     return view('partials.buku.create');
 });
-Route::get('buku', 'bukuController@index');
-Route::get('detail-buku/{id}', 'bukuController@show');
-Route::post('buku', 'bukuController@store');
+Route::get('buku', 'BukuController@index');
+Route::get('detail-buku/{id}', 'BukuController@show');
+Route::delete('buku/{id}', 'BukuController@destroy');
+Route::post('buku', 'BukuController@store');
 
-Route::put('edit-buku/{id}', 'bukuController@update');
-Route::get('delete-buku/{id}', 'bukuController@destroy');
-Route::get('edit-buku/{id}', 'bukuController@edit');
+Route::put('buku/{id}', 'BukuController@update');
+Route::get('delete-buku/{id}', 'BukuController@destroy');
+Route::get('edit-buku/{id}', 'BukuController@edit');
 Route::get('data-buku', 'BukuController@getData');
+

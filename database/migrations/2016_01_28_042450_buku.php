@@ -28,6 +28,6 @@ class buku extends Migration
      */
     public function down()
     {
-        Shcema::drop('buku');
+        Schema::drop('buku');
     }
 }

@@ -23,7 +23,6 @@
                     </button>
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                            @if(count($buku)>0)
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -58,7 +57,6 @@
                                     {{--@endforeach--}}
                                     </tbody>
                                 </table>
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -72,7 +70,7 @@
             </div>
         </div>
         <div class="row">
-            <div clas="col-lg-12">
+            <div class="col-lg-12">
                 <div class="panel-heading">
                     Tambah buku
                 </div>
@@ -158,21 +156,21 @@
                                                    name="harga_buku">
                                         </div>
 
-                                        <div class="form-group">
-                                            {{csrf_field()}}
-                                            {{method_field('PUT') }}
 
-                                            </div>
-                                            <button type="submit" class="btn btn-outline btn-info" type="submit"value="Simpan">
-                                                onclick="location.href='/buku/';'>Simpan
-                                                <button type="button" class="btn btn-outline btn-primary"
-                                                        onclick="location.href='/buku';">Kembali
-                                                </button>
+                                        <div class="form-group">
+
+
                                         </div>
-                                    </form>
+                                        <input type="submit" class="btn btn-outline btn-info"  value="Simpan">
+
+                                        <button type="button" class="btn btn-outline btn-primary"
+                                                onclick="Index()">Kembali
+                                        </button>
+                                        </form>
+                                        </div>
+
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
     <script src="{!! asset('bower_components/jquery/dist/jquery.min.js') !!}"></script>
@@ -189,7 +187,7 @@
                         nama_buku = $form.find("input[name='nama_buku']").val(),
                         jenis_buku = $form.find("input[name='jenis_buku']").val(),
                         harga_buku = $form.find("input[name='harga_buku']").val();
-                $("$Form-Create").reset();
+
                 var posting = $.post('/buku', {
                     id: id,
                     nama_buku: nama_buku,
@@ -197,15 +195,12 @@
                     harga_buku: harga_buku,
                 });
                 //Put the result in a div
-                posting.dne(function (data) {
+                posting.done(function (data) {
 
                     console.log(data);
                     window.alert(data.result.message);
-                    document.getElementById("form-Create").reset();
-                    location.reload();
-                    $('#Create').hide();
-                    $('#Edit').hide();
-                    $('#Index').show();
+                    getAjax();
+                    Index();
                 });
             });
         });
@@ -219,12 +214,24 @@
             $('#Create').show();
             $('#Edit').hide();
             $('#Index').hide();
+            $("input[name='id']").val("")
+            $("input[name='nama_buku']").val("");
+            $("input[name='jenis_buku']").val("");
+            $("input[name='haga_buku']").val("");
         }
         function getAjax() {
             $("#tampildata").children().remove();
             $.getJSON("/data-buku", function(data) {
                 $.each(data.slice(0,9),function(i,data) {
-                    $("#tampildata").append("<tr><td>"+ data.id + "</td><td>" + data.nama_buku + data.jenis_buku +"</td><td>" + data.harga_buku + "</td><td><button type='button' class='btn btn-outline btn-info' onclick='Edit("+ data.id +")'>Edit</button><button type='button' class='btn btn-outline btn-danger onclick='Hapus("+ data.id+")'>Delete</button></td></tr>");
+                    $("#tampildata").append("<tr><td>"+ data.id + "</td>" +
+                            "<td>" + data.nama_buku +"</td>" +
+                            "<td>" + data.jenis_buku + "</td>" +
+                            "<td>" + data.harga_buku + "</td>" +
+                            "<td><button type='button' class='btn btn-outline btn-info' " +
+                            "onclick='Edit("+ data.id +")'>Edit</button>" +
+                            "<button type='button' class='btn btn-outline btn-danger' " +
+                            "onclick='Hapus("+ data.id+")'>Delete</button>" +
+                            "</td></tr>");
                 });
             });
 
