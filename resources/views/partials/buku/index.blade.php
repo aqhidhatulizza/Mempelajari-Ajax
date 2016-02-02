@@ -24,13 +24,14 @@
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
                             @if(count($buku)>0)
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>id</th>
                                         <th>nama_buku</th>
                                         <th>jenis_buku</th>
                                         <th>harga_buku</th>
+                                        <th>aksi</th>
                                     </tr>
                                     </thead>
                                     <tbody id="tampildata">
@@ -55,7 +56,7 @@
                                             {{--</td>--}}
                                         {{--</tr>--}}
                                     {{--@endforeach--}}
-                                    {{--</tbody>--}}
+                                    </tbody>
                                 </table>
                             @endif
                         </div>
@@ -161,7 +162,7 @@
                                             {{csrf_field()}}
                                             {{method_field('PUT') }}
 
-
+                                            </div>
                                             <button type="submit" class="btn btn-outline btn-info" type="submit"value="Simpan">
                                                 onclick="location.href='/buku/';'>Simpan
                                                 <button type="button" class="btn btn-outline btn-primary"
@@ -174,10 +175,6 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
     <script src="{!! asset('bower_components/jquery/dist/jquery.min.js') !!}"></script>
     <script>
         $(document).ready(function () {
@@ -225,10 +222,10 @@
         }
         function getAjax() {
             $("#tampildata").children().remove();
-            $.getJSON("/data", function(data) {
+            $.getJSON("/data-buku", function(data) {
                 $.each(data.slice(0,9),function(i,data) {
-                    $("tampildata").append("<tr><td>"+ data.id + "</td><td>" + data.nama_buku + data.jenis_buku +"</td><td>" + data.harga_buku + "</td><td><button type='button' class='btn btn-outline btn-info' onclick='Edit("+ data.id +")'>Edit</button><button type='button' class='btn btn-outline btn-danger onclick='Hapus("+ data.id+")'>Delete</button></td></tr>");
-                }):
+                    $("#tampildata").append("<tr><td>"+ data.id + "</td><td>" + data.nama_buku + data.jenis_buku +"</td><td>" + data.harga_buku + "</td><td><button type='button' class='btn btn-outline btn-info' onclick='Edit("+ data.id +")'>Edit</button><button type='button' class='btn btn-outline btn-danger onclick='Hapus("+ data.id+")'>Delete</button></td></tr>");
+                });
             });
 
         }
@@ -242,7 +239,6 @@
                         data: {}
                     })
                     .done(function (data) {
-                        console.log(data.id);
                         //         var $form = $(this),
                         id = $("input[name='id']").val(data.id);
                         nama_buku = $("input[name='nama_buku']").val(data.nama_buku);

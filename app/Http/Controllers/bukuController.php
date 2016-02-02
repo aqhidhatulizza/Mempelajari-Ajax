@@ -20,6 +20,7 @@ class bukuController extends Controller
 
     public function index($limit = 10)
     {
+
         return view('partials.buku.index', [
             'buku' => $this->buku->getByPage($limit),
         ]);
@@ -31,13 +32,17 @@ class bukuController extends Controller
     {
         return $this->buku->create($request->all());
     }
-
+ public function getData($limit = 10)
+ {
+     return $this->buku->getData();
+ }
     public function show($id)
     {
-        return view('partials.buku.detail', [
-            'data' => $this->buku->find($id),
-
-        ]);
+//        return view('partials.buku.detail', [
+//            'data' => $this->buku->find($id),
+//
+//        ]);
+        $this->buku->find($id);
     }
     public function edit($id)
     {
