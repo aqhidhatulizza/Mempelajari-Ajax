@@ -37,10 +37,11 @@ class IdentitasController extends Controller
     }
     public function show($id)
     {
-        return view('partials.identitas.detail', [
-            'data' => $this->identitas->find($id),
+//        return view('partials.identitas.detail', [
+//            'data' => $this->identitas->find($id),
 
-        ]);
+//        ]);
+        return $this->identitas->find($id);
     }
     public function edit($id)
     {

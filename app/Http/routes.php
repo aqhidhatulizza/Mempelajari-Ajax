@@ -14,7 +14,7 @@ Route::delete('identitas/{id}', 'IdentitasController@destroy');
 Route::post('identitas', 'IdentitasController@store');
 
 Route::put('identitas/{id}', 'IdentitasController@update');
-Route::get('delete-identitas/{id}', 'IdentitasController@destroy');
+Route::delete('delete-identitas/{id}', 'IdentitasController@destroy');
 Route::get('edit-identitas/{id}', 'IdentitasController@edit');
 Route::get('data-identitas', 'IdentitasController@getData');
 
@@ -32,7 +32,7 @@ Route::delete('buku/{id}', 'BukuController@destroy');
 Route::post('buku', 'BukuController@store');
 
 Route::put('buku/{id}', 'BukuController@update');
-Route::get('delete-buku/{id}', 'BukuController@destroy');
+Route::delete('delete-buku/{id}', 'BukuController@destroy');
 Route::get('edit-buku/{id}', 'BukuController@edit');
 Route::get('data-buku', 'BukuController@getData');
 

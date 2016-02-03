@@ -56,7 +56,7 @@ class IdentitasRepository extends AbstractRepository implements Paginable, Cruda
 
     public function delete($id)
     {
-      return   parent::delete($id);
+      return parent::delete($id);
 
       //  return redirect('/identitas');
     }
