@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('title', 'Page Title')
 @section('content')
-<body onload="Index()">
+
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">identitas</h1>
             </div>
         </div>
-
+<div id="Index">
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -167,8 +167,9 @@
                                     </div>
                                 </form>
                             </div>
+                            </div>
                         </form>
-                    </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -216,7 +217,7 @@
 
                 event.preventDefault();
                 var $form = $(this),
-                        nama = $form.find("input[input='nama']").val(),
+                        nama = $form.find("input[name='nama']").val(),
                         alamat = $form.find("input[name='alamat']").val(),
                         jenis_kelamin = $form.find("input[name='jenis_kelamin']").val(),
                         tanggal_masuk = $form.find("input[name='tanggal_masuk']").val(),
@@ -277,28 +278,6 @@
             });
         });
 
-        function Detail(id) {
-            $("#modal-body").children().remove();
-            $.ajax({
-                method: "GET",
-                url: '/identitas/' + id,
-                data: {},
-                beforeSend: function () {
-                    $('#loader-wrapper').show();
-                },
-                success: function (data) {
-//                    $('#loader').hide();
-                    $("#loader-wrapper").hide();
-                    $("#modal-body").append("<tr><td>id </td><td> : </td><td>" + data.id + "</td></tr>" +
-                            "<tr><td> nama </td><td> : </td><td>" + data.nama + "</td></tr>" +
-                            "<tr><td> jenis_kelamin</td><td> : </td><td>" + data.jenis_kelamin + "</td></tr>" +
-                            "<tr><td> tanggal_masuk</td><td> : </td><td>" + data.tanggal_masuk + "</td></tr>" +
-                            "<tr><td> user_id</td><td> : </td><td>" + data.user_id + "</td></tr>"
-                    );
-                }
-            });
-        }
-
         function Index() {
             $('#Create').hide();
             $('#Edit').hide();
@@ -318,7 +297,7 @@
 
         }
         function getAjax() {
-            $("#data-example").children().remove();
+            $("#date-example").children().remove();
             $("#loader2").delay(2000).animate({
                 opacity:0,
                 width: 0,
@@ -334,7 +313,7 @@
 
         function Edit(id) {
             $('#Create').hide();
-            $('#Edit').show();
+            $('#Edit').hide();
             $('#Index').hide();
             document.getElementById("Form-Create").reset();
             document.getElementById("Form-Edit").reset();
@@ -358,6 +337,28 @@
                     });
 
         }
+
+        function Detail(id) {
+            $("#modal-body").children().remove();
+            $.ajax({
+                method: "GET",
+                url: '/identitas/' + id,
+                data: {},
+                beforeSend: function () {
+                    $('#loader-wrapper').show();
+                },
+                success: function (data) {
+//                    $('#loader').hide();
+                    $("#loader-wrapper").hide();
+                    $("#modal-body").append(
+                            "<tr><td> nama </td><td> : </td><td>" + data.nama + "</td></tr>" +
+                            "<tr><td> jenis_kelamin</td><td> : </td><td>" + data.jenis_kelamin + "</td></tr>" +
+                            "<tr><td> tanggal_masuk</td><td> : </td><td>" + data.tanggal_masuk + "</td></tr>" +
+                            "<tr><td> user_id</td><td> : </td><td>" + data.user_id + "</td></tr>"
+                    );
+                }
+            });
+        }
         function Hapus(id) {
             var result = confirm("Apakah Anda Yakin ingin Menghapus?");
             if (result) {
@@ -369,11 +370,11 @@
                         })
                         .done(function (data) {
                             window.alert(data.result.message);
-                            Index();
+                            getAjax();
                         });
             }
         }
     </script>
-
+</body>
 @endsection
 

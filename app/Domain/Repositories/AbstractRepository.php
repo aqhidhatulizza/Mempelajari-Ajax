@@ -63,7 +63,7 @@ abstract class AbstractRepository implements RepositoryContract
             return $this->deleteError();
         }
         $q->delete();
-        return $this->deleteSuccess();
+        return $this->deleteSucces();
     }
 
     public function getByPage($limit = 10, array $columns = ['*'])

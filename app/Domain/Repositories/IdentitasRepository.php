@@ -27,7 +27,7 @@ class IdentitasRepository extends AbstractRepository implements Paginable, Cruda
 
     public function create(array $data)
     {
-        parent::create([
+    return    parent::create([
                 'nama' => e($data['nama']),
                 'alamat' => e($data['alamat']),
                 'tanggal_masuk' => e($data['tanggal_masuk']),
@@ -36,12 +36,12 @@ class IdentitasRepository extends AbstractRepository implements Paginable, Cruda
             ]
         );
 
-        return redirect('/identitas');
+
     }
 
     public function update($id, array $data)
     {
-        parent::update($id, [
+    return    parent::update($id, [
                 'nama' => e($data['nama']),
                 'alamat' => e($data['alamat']),
                 'tanggal_masuk' => e($data['tanggal_masuk']),
@@ -50,7 +50,7 @@ class IdentitasRepository extends AbstractRepository implements Paginable, Cruda
             ]
         );
 
-        return redirect('/identitas');
+
 
     }
 

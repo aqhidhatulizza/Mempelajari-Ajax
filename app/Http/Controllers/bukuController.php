@@ -42,13 +42,15 @@ class bukuController extends Controller
 //            'data' => $this->buku->find($id),
 //
 //        ]);
-        $this->buku->find($id);
+        return $this->buku->find($id);
     }
     public function edit($id)
     {
-        return view('partials.buku.edit', [
-            'data' => $this->buku->find($id),
-        ]);
+//        return view('partials.buku.edit', [
+//            'data' => $this->buku->find($id),
+//        ]);
+
+        return $this->buku->find($id);
     }
 
 
