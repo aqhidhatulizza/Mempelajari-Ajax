@@ -36,3 +36,20 @@ Route::delete('delete-buku/{id}', 'BukuController@destroy');
 Route::get('edit-buku/{id}', 'BukuController@edit');
 Route::get('data-buku', 'BukuController@getData');
 
+Route::get('/', function () {
+    return view('partials.home');
+
+});
+Route::get('create-peminjaman', function () {
+    return view('partials.peminjaman.create');
+});
+Route::get('peminjaman', 'PeminjamanController@index');
+Route::get('detail-peminjaman/{id}', 'PeminjamanController@show');
+Route::delete('peminjaman/{id}', 'PeminjamanController@destroy');
+Route::post('peminjaman', 'PeminjamanController@store');
+
+Route::put('peminjaman/{id}', 'PeminjamanController@update');
+Route::delete('delete-peminjaman/{id}', 'PeminjamanController@destroy');
+Route::get('edit-peminjaman/{id}', 'PeminjamanController@edit');
+Route::get('data-peminjaman', 'PeminjamanController@getData');
+

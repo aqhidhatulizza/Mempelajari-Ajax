@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class buku extends Migration
+class Buku extends Migration
 {
     /**
      * Run the migrations.
