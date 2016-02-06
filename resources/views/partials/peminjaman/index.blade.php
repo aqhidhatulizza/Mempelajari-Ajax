@@ -141,11 +141,10 @@
                         Edit peminjaman
                     </div>
                     <div class="panel-body">
-                        <form role="form">
 
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form id="Form">
+                                    <form id="Form-Edit">
                                         <div class="form-group">
                                             <label>id</label>
                                             </label>:</label>
@@ -155,14 +154,17 @@
                                         <div class="form-group">
                                             <label>id_buku</label>
                                             </label>:</label>
-                                            <input type="text" class="form-control"
-                                                   name="tanggal_pinjam">
+                                            <select id="id_buku" class="form-control"
+                                                   name="id_buku">
+                                                </select>
                                         </div>
                                         <div class="form-group">
                                             <label>id_identitas</label>
                                             </label>:</label>
-                                            <input type="text" class="form-control"
-                                                   name="tanggal_kembali">
+                                            <select id="id_identitas" class="form-control"
+                                                   name="id_identitas">
+                                                </select>
+
                                         </div>
 
                                         <div class="form-group">
@@ -196,7 +198,6 @@
                                     </form>
                                 </div>
                             </div>
-                        </form>
                     </div>
 
                 </div>
@@ -393,21 +394,38 @@
                         url: '/edit-peminjaman/' + id,
                         data: {}
                     })
-                    .done(function (data) {
-                        console.log(data.id);
+                    .done(function (data_edit) {
+                        $("input[name='id']").val(data_edit.id);
+                        $("input[name='lama_hari']").val(data_edit.lama_hari);
+                        $("input[name='tanggal_pinjam']").val(data_edit.tanggal_pinjam);
+                        $("input[name='tanggal_kembali]").val(data_edit.tanggal_kembali);
 
-                        //         var $form = $(this),
-                        $("input[name='id']").val(data.id);
-                        $("input[name='id_buku']").val(data.id_buku);
-                        $("input[name='id_identitas']").val(data.id_identitas);
-                        $("input[name='lama_hari']").val(data.lama_hari);
+                        $.getJSON("/data-buku", function (data) {
+                        var jumlah = data.length;
+                        $.each(data.slice(0, jumlah), function (i, data) {
+                            if (data_edit.id_buku.id == data.id) {
+                                    $("select[name='id_buku']").append("<option value='" + data.id + "' selected>" + data.nama_buku + "</option>");
+                                }
+                                else {
+                                    $("select[name='id_buku']").append("<option value='" + data.id + "'>" + data.nama_buku + "</option>");
+                                }
+                            })
+                        });
+                        $.getJSON("/data-identitas", function (data) {
+                            var jumlah = data.length;
+                            $.each(data.slice(0, jumlah), function (i, data) {
+                                if (data_edit.id == data.id) {
+                                    $("select[name='id_identitas']").append("<option value='" + data.id + "' selected>" + data.nama + "</option>");
+                                }
+                                else {
+                                    $("select[name='id_identitas']").append("<option value='" + data.id + "'>" + data.nama + "</option>");
+                                }
+                            })
+                        });
 
-                        $("input[name='tanggal_pinjam']").val(data.tanggal_pinjam);
-                        $("input[name='tanggal_kembali']").val(data.tanggal_kembali);
 
-
-                        $('#Edit').show();
-                    });
+                $('#Edit').show();
+            });
         }
 
 
@@ -415,8 +433,8 @@
             event.preventDefault();
             var $form = $(this),
                     id = $form.find("input[name='id']").val(),
-                    id_buku = $form.find("input[name='id_buku']").val(),
-                    id_identitas = $form.find("input[name='id_identitas']").val(),
+                    id_buku = $form.find("select[name='id_buku']").val(),
+                    id_identitas = $form.find("select[name='id_identitas']").val(),
                     lama_hari = $form.find("input[name='lama_hari']").val(),
                     tanggal_pinjam = $form.find("input[name='tanggal_pinjam']").val(),
                     tanggal_kembali = $form.find("input[name='tanggal_kembali']").val(),
